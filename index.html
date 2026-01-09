@@ -7,12 +7,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #1e3a8a;  /* Dark Blue */
-            --secondary: #3b82f6; /* Bright Blue */
-            --dark: #0f172a;    /* Dark Navy */
-            --light: #f7f7f7;
-            --danger: #dc2626;
-            --warning: #f59e0b;
+            --primary: #000000;  /* Black */
+            --secondary: #f8f9fa; /* Light Gray */
+            --dark: #121212;    /* Dark Black */
+            --light: #f8f9fa;
+            --danger: #dc3545;
+            --warning: #ffc107;
+            --success: #28a745;
         }
         * {
             margin: 0;
@@ -23,22 +24,26 @@
         body {
             background-color: var(--dark);
             color: var(--light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            flex: 1;
         }
         header {
             background-color: var(--primary);
             padding: 20px 0;
             text-align: center;
             border-bottom: 4px solid var(--secondary);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
         }
         header h1 {
             font-size: 2.5rem;
-            color: white;
+            color: var(--secondary);
             margin-bottom: 10px;
         }
         header h1 i {
@@ -46,11 +51,11 @@
             margin-right: 10px;
         }
         .card {
-            background-color: var(--primary);
+            background-color: rgba(0, 0, 0, 0.8);
             border-radius: 10px;
             padding: 25px;
             margin: 20px 0;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
             border-left: 5px solid var(--secondary);
         }
         .card h2 {
@@ -76,7 +81,7 @@
             width: 100%;
             padding: 12px 15px;
             background-color: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 5px;
             color: white;
             font-size: 1rem;
@@ -86,12 +91,13 @@
             outline: none;
             border-color: var(--secondary);
             background-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 0 3px rgba(248, 249, 250, 0.25);
         }
         .btn {
             display: inline-block;
             padding: 12px 25px;
             background-color: var(--secondary);
-            color: white;
+            color: #000;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -101,9 +107,9 @@
             text-align: center;
         }
         .btn:hover {
-            background-color: #2563eb;
+            background-color: #e9ecef;
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
         .btn-block {
             display: block;
@@ -119,11 +125,11 @@
             margin-bottom: 30px;
         }
         .stat-card {
-            background-color: var(--primary);
+            background-color: rgba(0, 0, 0, 0.8);
             padding: 20px;
             border-radius: 8px;
             text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
             border-top: 4px solid var(--secondary);
         }
         .stat-card h3 {
@@ -134,7 +140,7 @@
         .stat-card p {
             font-size: 1.8rem;
             font-weight: 700;
-            color: white;
+            color: var(--secondary);
         }
         .transaction-history {
             max-height: 400px;
@@ -155,31 +161,34 @@
             font-weight: 600;
         }
         .transaction-deposit {
-            color: var(--secondary);
+            color: var(--success);
         }
         .transaction-withdraw {
             color: var(--danger);
         }
         .transaction-profit {
-            color: #60a5fa; /* Light Blue for profit */
+            color: var(--warning);
         }
         .processing {
             color: var(--warning);
             font-weight: 600;
         }
         .completed {
-            color: var(--secondary);
+            color: var(--success);
             font-weight: 600;
         }
         .nav-link {
-            color: white;
+            color: var(--secondary);
             text-decoration: none;
             margin: 0 10px;
             font-weight: 500;
             transition: all 0.3s;
+            padding: 5px 10px;
+            border-radius: 3px;
         }
         .nav-link:hover {
-            color: var(--secondary);
+            color: #000;
+            background-color: var(--secondary);
         }
         .text-center {
             text-align: center;
@@ -200,19 +209,25 @@
         .profile-info h3 {
             font-size: 1.5rem;
             margin-bottom: 5px;
+            color: var(--secondary);
         }
         .profile-info p {
-            color: #aaa;
+            color: #adb5bd;
         }
         .tabs {
             display: flex;
             margin-bottom: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
         .tab {
             padding: 10px 20px;
             cursor: pointer;
             border-bottom: 3px solid transparent;
+            color: #adb5bd;
+            transition: all 0.3s;
+        }
+        .tab:hover {
+            color: var(--secondary);
         }
         .tab.active {
             border-bottom: 3px solid var(--secondary);
@@ -229,11 +244,11 @@
             position: fixed;
             top: 20px;
             right: 20px;
-            background: var(--secondary);
+            background: var(--success);
             color: white;
             padding: 15px;
             border-radius: 5px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             z-index: 1000;
             animation: slideIn 0.5s ease-out;
         }
@@ -249,20 +264,63 @@
             font-weight: 600;
         }
         .badge-success {
-            background-color: rgba(59, 130, 246, 0.2);
-            color: var(--secondary);
+            background-color: rgba(40, 167, 69, 0.2);
+            color: var(--success);
         }
         .badge-warning {
-            background-color: rgba(245, 158, 11, 0.2);
+            background-color: rgba(255, 193, 7, 0.2);
             color: var(--warning);
         }
         .badge-danger {
-            background-color: rgba(220, 38, 38, 0.2);
+            background-color: rgba(220, 53, 69, 0.2);
             color: var(--danger);
         }
+        .error-message {
+            color: var(--danger);
+            background-color: rgba(220, 53, 69, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-left: 4px solid var(--danger);
+        }
+        .success-message {
+            color: var(--success);
+            background-color: rgba(40, 167, 69, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-left: 4px solid var(--success);
+        }
+        footer {
+            background-color: var(--primary);
+            color: var(--secondary);
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+            border-top: 2px solid var(--secondary);
+        }
+        .mcb-footer {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary);
+            margin-top: 10px;
+            letter-spacing: 2px;
+        }
         @keyframes slideIn {
-            from { transform: translateX(100%); }
-            to { transform: translateX(0); }
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: var(--secondary);
         }
     </style>
 </head>
@@ -284,8 +342,10 @@
 
     <div class="container">
         <!-- Login Form -->
-        <div id="loginForm" class="card">
+        <div id="loginForm" class="card fade-in">
             <h2><i class="fas fa-sign-in-alt"></i> Login</h2>
+            <div id="loginError" class="error-message hidden"></div>
+            <div id="loginSuccess" class="success-message hidden"></div>
             <div class="form-group">
                 <label for="loginEmail">Email</label>
                 <input type="email" id="loginEmail" class="form-control" placeholder="Enter your email" required>
@@ -301,6 +361,8 @@
         <!-- Registration Form -->
         <div id="registrationForm" class="card hidden">
             <h2><i class="fas fa-user-plus"></i> Register</h2>
+            <div id="registerError" class="error-message hidden"></div>
+            <div id="registerSuccess" class="success-message hidden"></div>
             <div class="form-group">
                 <label for="regName">Full Name</label>
                 <input type="text" id="regName" class="form-control" placeholder="Enter your full name" required>
@@ -327,74 +389,83 @@
 
         <!-- Dashboard (After Login) -->
         <div id="dashboard" class="hidden">
-            <div class="stats">
-                <div class="stat-card">
-                    <h3><i class="fas fa-wallet"></i> Current Balance</h3>
-                    <p id="userBalance">PKR0.00</p>
-                </div>
-                <div class="stat-card">
-                    <h3><i class="fas fa-hand-holding-usd"></i> Total Deposited</h3>
-                    <p id="totalDeposited">PKR0.00</p>
-                </div>
-                <div class="stat-card">
-                    <h3><i class="fas fa-chart-line"></i> Daily Profit (0.7%)</h3>
-                    <p id="dailyProfit">PKR0.00</p>
-                </div>
-                <div class="stat-card">
-                    <h3><i class="fas fa-clock"></i> Next Profit In</h3>
-                    <p id="nextProfitTime">00:00:00</p>
-                </div>
+            <div id="dashboardLoading" class="loading hidden">
+                <i class="fas fa-spinner fa-spin"></i> Loading dashboard...
             </div>
+            <div id="dashboardContent">
+                <div class="stats">
+                    <div class="stat-card">
+                        <h3><i class="fas fa-wallet"></i> Current Balance</h3>
+                        <p id="userBalance">PKR0.00</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3><i class="fas fa-hand-holding-usd"></i> Total Deposited</h3>
+                        <p id="totalDeposited">PKR0.00</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3><i class="fas fa-chart-line"></i> Daily Profit (0.7%)</h3>
+                        <p id="dailyProfit">PKR0.00</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3><i class="fas fa-clock"></i> Next Profit In</h3>
+                        <p id="nextProfitTime">00:00:00</p>
+                    </div>
+                </div>
 
-            <div class="card">
-                <h2><i class="fas fa-money-bill-wave"></i> Deposit Funds</h2>
-                <div class="form-group">
-                    <label for="depositMethod">Payment Method</label>
-                    <select id="depositMethod" class="form-control">
-                        <option value="nayapay">Sadapay (Account: 03250416566)</option>
-                        <option value="easypaisa">EasyPaisa (Account: Update)</option>
-                        <option value="jazzcash">MBANK (Account: PK41UMBL0000032124035614)</option>
-                        <option value="crypto">Crypto (TRX: TYniZoq95Paj5zYFTuqmMKQV6xX5DJy2th)</option>
-                    </select>
+                <div class="card">
+                    <h2><i class="fas fa-money-bill-wave"></i> Deposit Funds</h2>
+                    <div id="depositError" class="error-message hidden"></div>
+                    <div id="depositSuccess" class="success-message hidden"></div>
+                    <div class="form-group">
+                        <label for="depositMethod">Payment Method</label>
+                        <select id="depositMethod" class="form-control">
+                            <option value="nayapay">Sadapay (Account: 03250416566)</option>
+                            <option value="easypaisa">EasyPaisa (Account: Update)</option>
+                            <option value="jazzcash">MBANK (Account: PK41UMBL0000032124035614)</option>
+                            <option value="crypto">Crypto (TRX: TYniZoq95Paj5zYFTuqmMKQV6xX5DJy2th)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="depositAmount">Amount (PKR)</label>
+                        <input type="number" id="depositAmount" class="form-control" placeholder="Enter amount" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="trxId">Transaction ID (TRX)</label>
+                        <input type="text" id="trxId" class="form-control" placeholder="Enter transaction ID" required>
+                    </div>
+                    <button class="btn btn-block" id="depositBtn" onclick="deposit()">Deposit Now</button>
+                    <p id="depositStatus" class="text-center mt-4"></p>
+                    <p id="depositCooldown" class="cooldown hidden"></p>
                 </div>
-                <div class="form-group">
-                    <label for="depositAmount">Amount (PKR)</label>
-                    <input type="number" id="depositAmount" class="form-control" placeholder="Enter amount" required>
-                </div>
-                <div class="form-group">
-                    <label for="trxId">Transaction ID (TRX)</label>
-                    <input type="text" id="trxId" class="form-control" placeholder="Enter transaction ID" required>
-                </div>
-                <button class="btn btn-block" id="depositBtn" onclick="deposit()">Deposit Now</button>
-                <p id="depositStatus" class="text-center mt-4"></p>
-                <p id="depositCooldown" class="cooldown hidden"></p>
-            </div>
 
-            <div class="card">
-                <h2><i class="fas fa-credit-card"></i> Withdraw Funds</h2>
-                <p id="withdrawCondition" class="processing">Note: You can withdraw after 60 days (2 months) from your first deposit.</p>
-                <div class="form-group">
-                    <label for="withdrawMethod">Withdraw Method</label>
-                    <select id="withdrawMethod" class="form-control">
-                        <option value="easypaisa">EasyPaisa</option>
-                        <option value="jazzcash">JazzCash</option>
-                        <option value="bank">Bank Transfer</option>
-                        <option value="crypto">Crypto (USDT/BTC)</option>
-                    </select>
+                <div class="card">
+                    <h2><i class="fas fa-credit-card"></i> Withdraw Funds</h2>
+                    <div id="withdrawError" class="error-message hidden"></div>
+                    <div id="withdrawSuccess" class="success-message hidden"></div>
+                    <p id="withdrawCondition" class="processing">Note: You can withdraw after 60 days (2 months) from your first deposit.</p>
+                    <div class="form-group">
+                        <label for="withdrawMethod">Withdraw Method</label>
+                        <select id="withdrawMethod" class="form-control">
+                            <option value="easypaisa">EasyPaisa</option>
+                            <option value="jazzcash">JazzCash</option>
+                            <option value="bank">Bank Transfer</option>
+                            <option value="crypto">Crypto (USDT/BTC)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="withdrawAmount">Amount (PKR)</label>
+                        <input type="number" id="withdrawAmount" class="form-control" placeholder="Enter amount" required>
+                    </div>
+                    <button class="btn btn-block" id="withdrawBtn" onclick="withdraw()">Withdraw Now</button>
+                    <p id="withdrawStatus" class="text-center mt-4"></p>
                 </div>
-                <div class="form-group">
-                    <label for="withdrawAmount">Amount (PKR)</label>
-                    <input type="number" id="withdrawAmount" class="form-control" placeholder="Enter amount" required>
-                </div>
-                <button class="btn btn-block" id="withdrawBtn" onclick="withdraw()">Withdraw Now</button>
-                <p id="withdrawStatus" class="text-center mt-4"></p>
-            </div>
 
-            <div class="card">
-                <h2><i class="fas fa-history"></i> Transaction History</h2>
-                <div class="transaction-history" id="transactionHistory">
-                    <div class="text-center">
-                        <p>No transactions yet</p>
+                <div class="card">
+                    <h2><i class="fas fa-history"></i> Transaction History</h2>
+                    <div class="transaction-history" id="transactionHistory">
+                        <div class="text-center">
+                            <p>No transactions yet</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -474,12 +545,37 @@
         </div>
     </div>
 
+    <footer>
+        <div class="container">
+            <p>© 2024 MUSLIM INVEST BANK. All rights reserved.</p>
+            <p>WhatsApp Support: +923250416566</p>
+            <div class="mcb-footer">
+                MCB
+            </div>
+        </div>
+    </footer>
+
     <!-- Firebase SDK -->
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updatePassword, EmailAuthProvider, reauthenticateWithCredential } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-        import { getFirestore, doc, setDoc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { 
+            getAuth, 
+            createUserWithEmailAndPassword, 
+            signInWithEmailAndPassword, 
+            signOut, 
+            onAuthStateChanged, 
+            updatePassword, 
+            EmailAuthProvider, 
+            reauthenticateWithCredential 
+        } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { 
+            getFirestore, 
+            doc, 
+            setDoc, 
+            getDoc, 
+            updateDoc 
+        } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         // Your web app's Firebase configuration
         const firebaseConfig = {
@@ -503,19 +599,45 @@
         let profitTimerInterval;
         let depositCooldownInterval;
 
+        // Helper function to show error messages
+        function showError(elementId, message) {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.classList.remove('hidden');
+            setTimeout(() => {
+                element.classList.add('hidden');
+            }, 5000);
+        }
+
+        // Helper function to show success messages
+        function showSuccess(elementId, message) {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.classList.remove('hidden');
+            setTimeout(() => {
+                element.classList.add('hidden');
+            }, 5000);
+        }
+
         // Initialize the app
         function initApp() {
             onAuthStateChanged(auth, async (user) => {
                 if (user) {
                     try {
+                        console.log("User authenticated:", user.email);
+                        
+                        // Show loading
+                        document.getElementById('dashboardLoading').classList.remove('hidden');
+                        document.getElementById('dashboardContent').classList.add('hidden');
+                        
                         const docRef = doc(db, "users", user.uid);
                         const docSnap = await getDoc(docRef);
                         
                         if (docSnap.exists()) {
+                            console.log("User document found:", docSnap.data());
                             currentUser = docSnap.data();
                             currentUser.uid = docSnap.id;
                             showDashboard();
-                            startProfitCalculation();
                             startProfitTimer();
                             startDepositCooldownTimer();
                             
@@ -528,13 +650,37 @@
                                 addDailyProfit();
                             }
                         } else {
-                            logout();
+                            console.log("No user document found, creating one...");
+                            // User doesn't exist in Firestore, create basic user data
+                            const userData = { 
+                                name: user.email.split('@')[0], 
+                                email: user.email, 
+                                phone: 'Not provided', 
+                                balance: 0, 
+                                totalDeposited: 0,
+                                profit: 0,
+                                transactions: [],
+                                depositHistory: [],
+                                usedTrxIds: [],
+                                registrationDate: new Date().getTime(),
+                                paymentMethods: {},
+                                lastProfitTime: new Date().getTime(),
+                                lastDepositTime: 0,
+                                firstDepositDate: 0
+                            };
+                            
+                            await setDoc(docRef, userData);
+                            currentUser = userData;
+                            currentUser.uid = user.uid;
+                            showDashboard();
                         }
                     } catch (error) {
-                        console.error("Error getting user document:", error);
+                        console.error("Error in auth state change:", error);
+                        showError('loginError', "Error loading user data. Please try again.");
                         logout();
                     }
                 } else {
+                    console.log("No user logged in");
                     showLogin();
                 }
             });
@@ -551,6 +697,13 @@
             document.getElementById('userNav').classList.add('hidden');
             clearInterval(profitTimerInterval);
             clearInterval(depositCooldownInterval);
+            
+            // Clear form fields
+            document.getElementById('regName').value = '';
+            document.getElementById('regEmail').value = '';
+            document.getElementById('regPhone').value = '';
+            document.getElementById('regPassword').value = '';
+            document.getElementById('regConfirmPassword').value = '';
         }
 
         function showLogin() {
@@ -562,15 +715,29 @@
             document.getElementById('userNav').classList.add('hidden');
             clearInterval(profitTimerInterval);
             clearInterval(depositCooldownInterval);
+            
+            // Clear form fields
+            document.getElementById('loginEmail').value = '';
+            document.getElementById('loginPassword').value = '';
         }
 
         function showDashboard() {
+            console.log("Showing dashboard for user:", currentUser?.email);
+            
+            // Hide other sections
             document.getElementById('loginForm').classList.add('hidden');
             document.getElementById('registrationForm').classList.add('hidden');
-            document.getElementById('dashboard').classList.remove('hidden');
             document.getElementById('profileSection').classList.add('hidden');
+            
+            // Show dashboard and user nav
+            document.getElementById('dashboard').classList.remove('hidden');
             document.getElementById('authLinks').classList.add('hidden');
             document.getElementById('userNav').classList.remove('hidden');
+            
+            // Hide loading and show content
+            document.getElementById('dashboardLoading').classList.add('hidden');
+            document.getElementById('dashboardContent').classList.remove('hidden');
+            
             updateDashboard();
             startProfitTimer();
             startDepositCooldownTimer();
@@ -622,14 +789,27 @@
             const password = document.getElementById('regPassword').value;
             const confirmPassword = document.getElementById('regConfirmPassword').value;
 
+            // Validation
+            if (!name || !email || !phone || !password || !confirmPassword) {
+                showError('registerError', "Please fill in all fields");
+                return;
+            }
+
             if (password !== confirmPassword) {
-                alert("Passwords do not match!");
+                showError('registerError', "Passwords do not match!");
+                return;
+            }
+
+            if (password.length < 6) {
+                showError('registerError', "Password must be at least 6 characters long");
                 return;
             }
 
             try {
+                console.log("Starting registration for:", email);
                 const userCredential = await createUserWithEmailAndPassword(auth, email, password);
                 const user = userCredential.user;
+                console.log("User created:", user.uid);
                 
                 const userData = { 
                     name, 
@@ -648,13 +828,29 @@
                     firstDepositDate: 0
                 };
                 
+                console.log("Saving user data to Firestore...");
                 await setDoc(doc(db, "users", user.uid), userData);
                 currentUser = userData;
                 currentUser.uid = user.uid;
-                showDashboard();
+                
+                showSuccess('registerSuccess', "Registration successful! Redirecting to dashboard...");
+                setTimeout(() => {
+                    showDashboard();
+                }, 1500);
+                
             } catch (error) {
-                console.error("Registration error:", error);
-                alert("Registration failed: " + error.message);
+                console.error("Registration error details:", error);
+                if (error.code === 'auth/email-already-in-use') {
+                    showError('registerError', "This email is already registered. Please use another email.");
+                } else if (error.code === 'auth/invalid-email') {
+                    showError('registerError', "Invalid email address.");
+                } else if (error.code === 'auth/weak-password') {
+                    showError('registerError', "Password is too weak. Use at least 6 characters.");
+                } else if (error.code === 'auth/network-request-failed') {
+                    showError('registerError', "Network error. Please check your internet connection.");
+                } else {
+                    showError('registerError', "Registration failed: " + error.message);
+                }
             }
         }
 
@@ -662,13 +858,34 @@
             const email = document.getElementById('loginEmail').value;
             const password = document.getElementById('loginPassword').value;
 
+            // Validation
+            if (!email || !password) {
+                showError('loginError', "Please enter both email and password");
+                return;
+            }
+
             try {
+                console.log("Attempting login for:", email);
                 await signInWithEmailAndPassword(auth, email, password);
-                // User logged in successfully
+                showSuccess('loginSuccess', "Login successful! Loading dashboard...");
                 // The auth state listener will handle the rest
             } catch (error) {
-                console.error("Login error:", error);
-                alert("Login failed: " + error.message);
+                console.error("Login error details:", error);
+                if (error.code === 'auth/user-not-found') {
+                    showError('loginError', "No account found with this email. Please register first.");
+                } else if (error.code === 'auth/wrong-password') {
+                    showError('loginError', "Incorrect password. Please try again.");
+                } else if (error.code === 'auth/invalid-email') {
+                    showError('loginError', "Invalid email address.");
+                } else if (error.code === 'auth/user-disabled') {
+                    showError('loginError', "This account has been disabled.");
+                } else if (error.code === 'auth/too-many-requests') {
+                    showError('loginError', "Too many failed attempts. Please try again later.");
+                } else if (error.code === 'auth/network-request-failed') {
+                    showError('loginError', "Network error. Please check your internet connection.");
+                } else {
+                    showError('loginError', "Login failed: " + error.message);
+                }
             }
         }
 
@@ -688,13 +905,18 @@
         // ================= USER DASHBOARD FUNCTIONS =================
 
         function updateDashboard() {
-            if (!currentUser) return;
+            if (!currentUser) {
+                console.error("No current user found!");
+                return;
+            }
 
+            console.log("Updating dashboard for user:", currentUser.email);
+            
             // Update balance and stats
             document.getElementById('userBalance').textContent = `PKR${currentUser.balance.toFixed(2)}`;
             document.getElementById('totalDeposited').textContent = `PKR${currentUser.totalDeposited.toFixed(2)}`;
             
-            // Daily profit changed to 0.7%
+            // Daily profit is 0.7%
             document.getElementById('dailyProfit').textContent = `PKR${(currentUser.totalDeposited * 0.007).toFixed(2)}`;
 
             // Update transaction history
@@ -702,6 +924,7 @@
             transactionHistory.innerHTML = '';
 
             if (currentUser.transactions && currentUser.transactions.length > 0) {
+                console.log("Found", currentUser.transactions.length, "transactions");
                 currentUser.transactions.sort((a, b) => b.date - a.date).forEach(transaction => {
                     const transactionItem = document.createElement('div');
                     transactionItem.className = 'transaction-item';
@@ -732,7 +955,7 @@
             }
 
             // Update withdraw condition
-            if (currentUser.firstDepositDate) {
+            if (currentUser.firstDepositDate && currentUser.firstDepositDate > 0) {
                 const withdrawDate = new Date(currentUser.firstDepositDate);
                 withdrawDate.setDate(withdrawDate.getDate() + 60);
                 const today = new Date();
@@ -742,7 +965,7 @@
                     document.getElementById('withdrawCondition').textContent = 'You can now withdraw your funds.';
                 } else {
                     const daysLeft = Math.ceil((withdrawDate - today) / (1000 * 60 * 60 * 24));
-                    document.getElementById('withdrawCondition').textContent = `Note: You can withdraw after ${daysLeft} more days (${withdrawDate.toLocaleDateString()}). whatsapp +923250416566`;
+                    document.getElementById('withdrawCondition').textContent = `Note: You can withdraw after ${daysLeft} more days (${withdrawDate.toLocaleDateString()}). WhatsApp: +923250416566`;
                 }
             }
         }
@@ -753,18 +976,23 @@
             const trxId = document.getElementById('trxId').value.trim();
 
             if (!amount || amount <= 0) {
-                alert("Please enter a valid amount");
+                showError('depositError', "Please enter a valid amount");
+                return;
+            }
+
+            if (amount < 100) {
+                showError('depositError', "Minimum deposit amount is PKR 100");
                 return;
             }
 
             if (!trxId) {
-                alert("Please enter a transaction ID");
+                showError('depositError', "Please enter a transaction ID");
                 return;
             }
 
             // Check if TRX ID is already used
             if (currentUser.usedTrxIds && currentUser.usedTrxIds.includes(trxId)) {
-                alert("This transaction ID has already been used");
+                showError('depositError', "This transaction ID has already been used");
                 return;
             }
 
@@ -773,8 +1001,8 @@
             const lastDepositTime = currentUser.lastDepositTime || 0;
             const hoursSinceLastDeposit = (now - lastDepositTime) / (1000 * 60 * 60);
 
-            if (hoursSinceLastDeposit < 24) {
-                alert("You can only make one deposit every 24 hours");
+            if (hoursSinceLastDeposit < 24 && lastDepositTime !== 0) {
+                showError('depositError', "You can only make one deposit every 24 hours");
                 return;
             }
 
@@ -802,7 +1030,7 @@
                 usedTrxIds: [...(currentUser.usedTrxIds || []), trxId]
             };
 
-            if (!currentUser.firstDepositDate) {
+            if (!currentUser.firstDepositDate || currentUser.firstDepositDate === 0) {
                 updatedUser.firstDepositDate = now;
             }
 
@@ -812,12 +1040,18 @@
                 currentUser = updatedUser;
                 document.getElementById('depositStatus').textContent = "Deposit successful!";
                 document.getElementById('depositStatus').className = "completed";
+                showSuccess('depositSuccess', "Deposit successful! Amount added to your balance.");
                 updateDashboard();
                 startDepositCooldownTimer();
+                
+                // Clear form fields
+                document.getElementById('depositAmount').value = '';
+                document.getElementById('trxId').value = '';
             } catch (error) {
                 console.error("Deposit error:", error);
                 document.getElementById('depositStatus').textContent = "Deposit failed. Please try again.";
                 document.getElementById('depositStatus').className = "processing";
+                showError('depositError', "Deposit failed. Please try again.");
             }
         }
 
@@ -826,28 +1060,33 @@
             const method = document.getElementById('withdrawMethod').value;
 
             if (!amount || amount <= 0) {
-                alert("Please enter a valid amount");
+                showError('withdrawError', "Please enter a valid amount");
+                return;
+            }
+
+            if (amount < 500) {
+                showError('withdrawError', "Minimum withdrawal amount is PKR 500");
                 return;
             }
 
             if (amount > currentUser.balance) {
-                alert("Insufficient balance");
+                showError('withdrawError', "Insufficient balance");
                 return;
             }
 
             // Check if withdrawal is allowed (after 60 days from first deposit)
-            if (currentUser.firstDepositDate) {
+            if (currentUser.firstDepositDate && currentUser.firstDepositDate > 0) {
                 const withdrawDate = new Date(currentUser.firstDepositDate);
                 withdrawDate.setDate(withdrawDate.getDate() + 60);
                 const today = new Date();
                 
                 if (today < withdrawDate) {
                     const daysLeft = Math.ceil((withdrawDate - today) / (1000 * 60 * 60 * 24));
-                    alert(`You can withdraw after ${daysLeft} more days (${withdrawDate.toLocaleDateString()})`);
+                    showError('withdrawError', `You can withdraw after ${daysLeft} more days (${withdrawDate.toLocaleDateString()})`);
                     return;
                 }
             } else {
-                alert("You need to make a deposit first");
+                showError('withdrawError', "You need to make a deposit first");
                 return;
             }
 
@@ -876,11 +1115,16 @@
                 currentUser = updatedUser;
                 document.getElementById('withdrawStatus').textContent = "Withdrawal request submitted!";
                 document.getElementById('withdrawStatus').className = "completed";
+                showSuccess('withdrawSuccess', "Withdrawal request submitted successfully!");
                 updateDashboard();
+                
+                // Clear form field
+                document.getElementById('withdrawAmount').value = '';
             } catch (error) {
                 console.error("Withdrawal error:", error);
                 document.getElementById('withdrawStatus').textContent = "Withdrawal failed. Please try again.";
                 document.getElementById('withdrawStatus').className = "processing";
+                showError('withdrawError', "Withdrawal failed. Please try again.");
             }
         }
 
@@ -912,8 +1156,18 @@
             const newPassword = document.getElementById('newPassword').value;
             const confirmNewPassword = document.getElementById('confirmNewPassword').value;
 
+            if (!currentPassword || !newPassword || !confirmNewPassword) {
+                alert("Please fill in all fields");
+                return;
+            }
+
             if (newPassword !== confirmNewPassword) {
                 alert("New passwords do not match");
+                return;
+            }
+
+            if (newPassword.length < 6) {
+                alert("New password must be at least 6 characters long");
                 return;
             }
 
@@ -932,7 +1186,13 @@
                 document.getElementById('confirmNewPassword').value = '';
             } catch (error) {
                 console.error("Password change error:", error);
-                alert("Failed to change password: " + error.message);
+                if (error.code === 'auth/wrong-password') {
+                    alert("Current password is incorrect");
+                } else if (error.code === 'auth/weak-password') {
+                    alert("New password is too weak. Use at least 6 characters.");
+                } else {
+                    alert("Failed to change password: " + error.message);
+                }
             }
         }
 
@@ -946,7 +1206,7 @@
         }
 
         async function addDailyProfit() {
-            // Changed from 1.3% to 0.7%
+            // Daily profit is 0.7%
             const profitAmount = currentUser.totalDeposited * 0.007;
             const now = new Date().getTime();
 
@@ -1015,7 +1275,7 @@
             }
 
             depositCooldownInterval = setInterval(() => {
-                if (currentUser && currentUser.lastDepositTime) {
+                if (currentUser && currentUser.lastDepositTime && currentUser.lastDepositTime > 0) {
                     const now = new Date().getTime();
                     const nextDepositTime = new Date(currentUser.lastDepositTime + 24 * 60 * 60 * 1000);
                     const timeLeft = nextDepositTime - now;
@@ -1039,6 +1299,7 @@
 
         // Initialize the app when the page loads
         window.onload = function() {
+            console.log("Page loaded, initializing app...");
             initApp();
         };
 
